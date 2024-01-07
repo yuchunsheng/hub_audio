@@ -1,8 +1,21 @@
-cmake_minimum_required(VERSION 3.2)
-project(audio_app)
 
-set(SOURCE_FILES main.cpp)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(audio_app ${SOURCE_FILES})
-# target_link_libraries(divider division)
-# install(TARGETS divider DESTINATION ${DIVISIBLE_INSTALL_BIN_DIR})
+string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wl,-rpath,'$ORIGIN'")
+string(APPEND CMAKE_C_FLAGS " -Wall -Wextra")
+
+file(GLOB SRC
+    *.h
+    *.cpp
+)
+
+ADD_EXECUTABLE(audio_app ${SRC})
+# target_link_libraries(audio_app
+#     common
+#     # whisper # remember to copy dll or so to bin folder
+# )
+
+include(CMakePrintHelpers)
+
+cmake_print_variables(CMAKE_CURRENT_LIST_DIR)
